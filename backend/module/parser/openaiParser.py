@@ -81,9 +81,3 @@ class openaiParser():
     def parseName(self, bangumiName: str):
         response = self._getResponse(bangumiName, parseNameSystemPrompt)
         return response
-
-if __name__ == "__main__":
-    api_key = "sk-dcf206c250064b759b862bf47bedcf18"
-
-    parser = openaiParser("https://api.deepseek.com", "deepseek-chat", api_key)
-    print(parser.parseFile("[银色子弹字幕组][名侦探柯南][第1182集 抓住那个长相的人][WEBRIP][简繁日多语MKV][PGS][1080P]"))

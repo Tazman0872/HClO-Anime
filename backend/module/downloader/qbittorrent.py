@@ -7,10 +7,7 @@ from qbittorrentapi.exceptions import (
     Forbidden403Error,
 )
 
-from module.ab_decorator import qb_connect_failed_wait
-
 logger = logging.getLogger(__name__)
-
 
 class QbDownloader:
     def __init__(self, host: str, username: str, password: str, ssl: bool=False):
@@ -54,30 +51,6 @@ class QbDownloader:
     def logout(self):
         self._client.auth_log_out()
 
-    def check_host(self):
-        try:
-            self._client.app_version()
-            return True
-        except APIConnectionError:
-            return False
-
-    @qb_connect_failed_wait
-    def prefs_init(self, prefs):
-        return self._client.app_set_preferences(prefs=prefs)
-
-    @qb_connect_failed_wait
-    def get_app_prefs(self):
-        return self._client.app_preferences()
-
-    def add_category(self, category):
-        return self._client.torrents_createCategory(name=category)
-
-    @qb_connect_failed_wait
-    def torrents_info(self, status_filter, category, tag=None):
-        return self._client.torrents_info(
-            status_filter=status_filter, category=category, tag=tag
-        )
-
     def add_torrents(self, torrent_urls, torrent_files, save_path, category, rename):
         resp = self._client.torrents_add(
             is_paused=False,
@@ -90,58 +63,3 @@ class QbDownloader:
             content_layout="NoSubFolder"
         )
         return resp == "Ok."
-
-    def torrents_delete(self, hash):
-        return self._client.torrents_delete(delete_files=True, torrent_hashes=hash)
-
-    def torrents_rename_file(self, torrent_hash, old_path, new_path) -> bool:
-        try:
-            self._client.torrents_rename_file(
-                torrent_hash=torrent_hash, old_path=old_path, new_path=new_path
-            )
-            return True
-        except Conflict409Error:
-            logger.debug(f"Conflict409Error: {old_path} >> {new_path}")
-            return False
-    
-    def rss_add_feed(self, url, item_path):
-        try:
-            self._client.rss_add_feed(url, item_path)
-        except Conflict409Error:
-            logger.warning(f"[Downloader] RSS feed {url} already exists")
-
-    def rss_remove_item(self, item_path):
-        try:
-            self._client.rss_remove_item(item_path)
-        except Conflict409Error:
-            logger.warning(f"[Downloader] RSS item {item_path} does not exist")
-
-    def rss_get_feeds(self):
-        return self._client.rss_items()
-
-    def rss_set_rule(self, rule_name, rule_def):
-        self._client.rss_set_rule(rule_name, rule_def)
-
-    def move_torrent(self, hashes, new_location):
-        self._client.torrents_set_location(new_location, hashes)
-
-    def get_download_rule(self):
-        return self._client.rss_rules()
-
-    def get_torrent_path(self, _hash):
-        return self._client.torrents_info(hashes=_hash)[0].save_path
-
-    def set_category(self, _hash, category):
-        try:
-            self._client.torrents_set_category(category, hashes=_hash)
-        except Conflict409Error:
-            logger.warning(f"[Downloader] Category {category} does not exist")
-            self.add_category(category)
-            self._client.torrents_set_category(category, hashes=_hash)
-
-    def remove_rule(self, rule_name):
-        self._client.rss_remove_rule(rule_name)
-
-    def add_tag(self, _hash, tag):
-        self._client.torrents_add_tags(tags=tag, hashes=_hash)
-
