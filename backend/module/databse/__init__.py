@@ -1,0 +1,1 @@
+from .postgresManager import RSSDatabaseManager

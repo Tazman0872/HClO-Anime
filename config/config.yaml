@@ -1,0 +1,22 @@
+database:
+  host: "192.168.1.5"
+  database: "anime"
+  user: "anime"
+  password: "anime"
+  port: "5433"
+
+openai:
+  base_url: "https://api.deepseek.com"
+  model_name: "deepseek-chat"
+  api_key: "sk-dcf206c250064b759b862bf47bedcf18"
+
+qbittorrent:
+  host: "qbittorrent.hypochlorous.top"
+  user: "admin"
+  password: "taohome080702"
+  path_prefix: "/bangumi/"
+
+filter:
+  hasCHS: true
+  hasCHT: false
+  subtype: ["SFT", "EXT"]
