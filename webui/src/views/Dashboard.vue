@@ -1,0 +1,5 @@
+<template>
+<h1>仪表盘</h1>
+<p>欢迎来到仪表盘页面。</p>
+</template>
+<script setup></script>

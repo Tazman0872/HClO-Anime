@@ -30,7 +30,7 @@ def _run_downloading():
 
 
 @router.post("/main")
-def add_rss(background_tasks: BackgroundTasks):
+def start_downloading(background_tasks: BackgroundTasks):
     """
     启动下载任务（确保同一时间只有一个任务运行）
     """
