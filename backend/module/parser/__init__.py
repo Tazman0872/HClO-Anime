@@ -1,1 +1,1 @@
-from .openaiParser import openaiParser
+from .openai import openaiParser
