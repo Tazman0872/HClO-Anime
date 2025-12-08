@@ -2,6 +2,7 @@ from module.parser import openaiParser
 from module.databse import RSSDatabaseManager
 from module.settings import configManager
 from module.rss import torrentRSSParser
+import time
 
 
 class parseManager:
@@ -21,6 +22,7 @@ class parseManager:
         while True:
             self._parse_rss_link()
             self._parse_file()
+            time.sleep(self.config.get("parser.interval")*60)
     
     def _parse_rss_link(self):
         bangumi_list = self.db_manager.get_all_bangumi()
