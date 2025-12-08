@@ -1,8 +1,7 @@
 <template>
   <header class="navbar">
     <div class="logo">
-      <img src="../assets/HClO.png" alt="Logo" />
-      <span>| Hypochlorous服务站</span>
+      <span>HClO Bangumi</span>
     </div>
     <button class="dark-toggle" @click="$emit('toggleDark')">
       <i :class="isDark ? 'icon-sun' : 'icon-moon'"></i>
@@ -21,7 +20,7 @@ defineProps({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px; /* ✅ 增加纵向高度 */
+  height: 72px;
   padding: 0 1rem;
   background-color: var(--navbar-bg);
   color: var(--text);
@@ -35,13 +34,9 @@ defineProps({
   gap: 4px;
 }
 
-.logo img {
-  height: 30px; /* ✅ 调整图标高度以匹配新 navbar 高度 */
-}
-
 .logo span {
-  font-size: 22px; /* ✅ 增大文字大小 */
-  font-weight: 500; /* 可选：加粗文字提升可读性 */
+  font-size: 22px;
+  font-weight: 500;
   color: var(--text);
 }
 
@@ -55,11 +50,9 @@ defineProps({
   background-position: center;
   vertical-align: bottom;
 }
-
 .icon-sun {
   background-image: url('../assets/sun.svg');
 }
-
 .icon-moon {
   background-image: url('../assets/moon.svg');
 }
