@@ -1,10 +1,10 @@
 <template>
-  <div class="rss-list-card p-5 bg-white rounded-2xl shadow-lg border border-gray-100">
-    <ul v-if="items.length > 0" class="space-y-4">
+  <div class="rss-list-container">
+    <ul v-if="items.length > 0" class="rss-grid">
       <li
         v-for="item in items"
         :key="item.id"
-        class="rss-item flex justify-between items-center p-5 bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition"
+        class="rss-item flex"
       >
         <div class="text-gray-800">
           <strong class="text-lg">{{ item.bangumi_name }}</strong><br />
@@ -14,7 +14,7 @@
         <button
           @click="emitRemove(item.link)"
           :disabled="loading"
-          class="px-3 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 shadow"
+          class="remove-btn px-3 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 shadow"
         >删除</button>
       </li>
     </ul>
@@ -36,18 +36,55 @@ const emitRemove = (link: string) => emit('remove', link)
 </script>
 
 <style scoped>
-.rss-list-card {
-  /* 使用全局主题颜色：卡片背景使用导航/卡片背景变量，边框使用分隔线颜色 */
-  background: var(--navbar-bg, #ffffff);
-  border: 1px solid var(--divider, rgba(0,0,0,0.06));
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(2,6,23,0.06);
+.rss-list-container {
+  /* 容器不再有卡片样式，保留默认间距（可根据需要调整） */
+  width: 100%;
+}
+
+/* 列表使用响应式网格；当宽度允许时每行显示两个项目 */
+.rss-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .rss-item {
-  background: transparent;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--divider, rgba(0,0,0,0.06));
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-/* 当页面使用 .dark 类切换为深色主题时，CSS 变量会自动切换，无需额外媒体查询 */
+.rss-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(2,6,23,0.08);
+}
+
+.rss-item > .text-gray-800 {
+  /* 文本区域允许换行并占据剩余空间 */
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.remove-btn {
+  /* 将删除按钮推到文本右侧 */
+  margin-left: 12px;
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+/* 在较小屏幕上略微减小卡片内边距 */
+@media (max-width: 420px) {
+  .rss-item {
+    padding: 12px;
+  }
+}
+
 </style>

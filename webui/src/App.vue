@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar.vue'
 
@@ -28,11 +28,20 @@ const collapsed = ref(false)
 
 const toggleDark = () => (isDark.value = !isDark.value)
 const toggleSidebar = () => (collapsed.value = !collapsed.value)
+
+// Sync dark mode class to the document root so CSS variables apply to body/html
+watch(isDark, (val) => {
+  try { document.documentElement.classList.toggle('dark', val) } catch (e) {}
+})
+
+onMounted(() => {
+  try { document.documentElement.classList.toggle('dark', isDark.value) } catch (e) {}
+})
 </script>
 
 <style>
 .app {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--bg);

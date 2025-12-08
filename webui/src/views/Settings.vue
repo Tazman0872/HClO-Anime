@@ -2,6 +2,7 @@
   <div class="config-container">
     <h2 class="title">系统配置管理</h2>
 
+    <div class="config-grid">
     <ConfigCard title="数据库配置">
       <FormInput label="主机地址" v-model="form.database.host" />
       <FormInput label="数据库名" v-model="form.database.database" />
@@ -35,6 +36,7 @@
         </label>
       </div>
     </ConfigCard>
+    </div>
 
     <div class="btn-row">
       <button class="btn save" @click="saveAll">保存全部配置</button>
@@ -134,6 +136,13 @@ onMounted(loadAll);
   padding: 20px;
   font-family: Inter, Arial, sans-serif;
 }
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 18px;
+  align-items: start;
+  margin-bottom: 14px;
+}
 .title {
   text-align: center;
   margin-bottom: 28px;
@@ -156,23 +165,23 @@ onMounted(loadAll);
   transition: 0.2s;
 }
 .btn.save {
-  background-color: #4caf50;
+  background-color: var(--hover, #4caf50);
   color: white;
 }
 .btn.reload {
-  background-color: #2196f3;
-  color: white;
+  background-color: var(--sidebar-bg, #2196f3);
+  color: var(--text, #fff);
 }
 .btn:hover {
   opacity: 0.9;
 }
 .loading {
-  color: #777;
+  color: var(--text, #777);
   text-align: center;
   margin-top: 16px;
 }
 .message {
-  color: green;
+  color: var(--hover, green);
   text-align: center;
   margin-top: 16px;
   font-weight: 500;

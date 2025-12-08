@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-gray-50 min-h-screen py-10 px-5">
-    <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-      <h2 class="text-2xl font-bold mb-6 text-gray-800">RSS 源管理</h2>
+  <div class="min-h-screen py-10 px-5" style="background-color: var(--bg); color: var(--text);">
+    <div class="max-w-3xl mx-auto p-8 rounded-2xl shadow-lg" style="background-color: var(--bg);">
+      <h2 class="text-2xl font-bold mb-6">RSS 源管理</h2>
 
       <!-- 添加 RSS -->
       <AddRssForm

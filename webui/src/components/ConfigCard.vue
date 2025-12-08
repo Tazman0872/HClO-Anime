@@ -16,12 +16,12 @@ const props = defineProps<Props>();
 
 <style scoped>
 .config-card {
-  border: 1px solid #ddd;
+  border: 1px solid var(--divider, #ddd);
   padding: 18px;
   border-radius: 10px;
   margin-bottom: 22px;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: var(--navbar-bg, #fff);
+  box-shadow: 0 2px 6px rgba(2,6,23,0.04);
 }
 .card-title {
   margin-bottom: 14px;
