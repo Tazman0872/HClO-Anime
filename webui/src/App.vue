@@ -1,23 +1,62 @@
 <template>
-  <div class="app-root">
-    <Sidebar />
-    <div class="main">
-      <Topbar />
+  <div :class="['app', { dark: isDark }]">
+    <Navbar :isDark="isDark" @toggleDark="toggleDark" />
+    <div class="layout">
+      <Sidebar
+        :collapsed="collapsed"
+        :isDark="isDark"
+        @toggleCollapse="toggleSidebar"
+      />
       <main class="content">
-        <RouterView />
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </main>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar.vue'
-import Topbar from './components/Topbar.vue'
-import { RouterView } from 'vue-router'
+
+const isDark = ref(false)
+const collapsed = ref(false)
+
+const toggleDark = () => (isDark.value = !isDark.value)
+const toggleSidebar = () => (collapsed.value = !collapsed.value)
 </script>
 
-<style scoped>
-.app-root{display:flex;min-height:100vh;background:#f3f4f6;color:#111}
-.main{flex:1;display:flex;flex-direction:column;min-height:100vh}
-.content{padding:20px}
+<style>
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+  transition: background-color 0.3s;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

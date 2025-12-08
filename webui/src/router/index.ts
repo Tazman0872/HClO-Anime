@@ -1,21 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-import Dashboard from '../views/Dashboard.vue'
-import Projects from '../views/Projects.vue'
-import Tasks from '../views/Tasks.vue'
-import Team from '../views/Team.vue'
+import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+import RSS from '../views/RSS.vue'
 import Settings from '../views/Settings.vue'
 
 const routes = [
-  { path: '/', redirect: '/dashboard' },
-  { path: '/dashboard', component: Dashboard },
-  { path: '/projects', component: Projects },
-  { path: '/tasks', component: Tasks },
-  { path: '/team', component: Team },
-  { path: '/settings', component: Settings }
+  { path: '/', name: 'Home', component: Home },
+  { path: '/about', name: 'About', component: About },
+  { path: '/rss', name: 'Matrix', component: RSS },
+  { path: '/settings', name: 'Ntfy', component: Settings },
 ]
 
-export const router = createRouter({
+const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 })
+
+export default router
