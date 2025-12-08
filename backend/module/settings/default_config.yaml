@@ -14,9 +14,9 @@ qbittorrent:
   host: "127.0.0.1"
   user: "admin"
   password: ""
-  path_prefix: "/"
+  path_prefix: "/" #下载路径前缀，如/bangumi/
 
 filter:
-  hasCHS: false
-  hasCHT: false
-  subtype: ["HRD", "SFT", "EXT", "UKN"]
+  hasCHS: false #是否包含中文简体,使用是否选择框
+  hasCHT: false #是否包含中文繁体,使用是否选择框
+  subtype: ["HRD", "SFT", "EXT", "UKN"] #四个中任意选择一个或多个

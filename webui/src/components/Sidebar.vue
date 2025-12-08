@@ -181,7 +181,7 @@ nav {
   background-image: url('../assets/link-light.svg');
 }
 .rss-dark {
-  background-image: url('../assets/link-dark.png');
+  background-image: url('../assets/link-dark.svg');
 }
 
 /* setting的亮暗切换 */
