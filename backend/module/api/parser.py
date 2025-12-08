@@ -40,3 +40,10 @@ def add_rss(background_tasks: BackgroundTasks):
 
     background_tasks.add_task(_run_parsing)
     return {"message": "Started parsing"}
+
+
+@router.get("/status")
+def parsing_status():
+    """Return whether parsing is currently in progress."""
+    with _parsing_lock:
+        return {"is_parsing": _is_parsing}

@@ -47,3 +47,10 @@ def start_downloading(background_tasks: BackgroundTasks):
     return {
         "message": "Start downloading",
     }
+
+
+@router.get("/status")
+def downloading_status():
+    """Return whether downloading is currently in progress."""
+    with _downloading_lock:
+        return {"is_downloading": _is_downloading}
