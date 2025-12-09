@@ -40,9 +40,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-# 复制全局配置文件（供后端使用）
-COPY config/config.yaml /app/config.yaml
-
 # 暴露端口（Nginx 用 80，后端 API 假设监听 8000）
 EXPOSE 80
 
