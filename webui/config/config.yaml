@@ -1,0 +1,23 @@
+database:
+  database: anime
+  host: 127.0.0.1
+  password: anime
+  port: '5432'
+  user: anime
+filter:
+  hasCHS: false
+  hasCHT: false
+  subtype:
+  - HRD
+  - SFT
+  - EXT
+  - UKN
+openai:
+  api_key: ''
+  base_url: ''
+  model_name: ''
+qbittorrent:
+  host: 127.0.0.1
+  password: ''
+  path_prefix: /
+  user: admin
