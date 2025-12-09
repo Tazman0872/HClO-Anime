@@ -39,7 +39,9 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import axios from 'axios'
 
-const API_BASE = 'http://localhost:8000'
+// Use relative paths so requests route through nginx proxy
+// nginx proxies /parser, /downloader etc. to internal backend (127.0.0.1:8000)
+const API_BASE = ''
 
 const parsing = ref(false)
 const parsingLoading = ref(false)

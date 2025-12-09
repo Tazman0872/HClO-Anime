@@ -32,7 +32,8 @@ import AddRssForm from '../components/AddRssForm.vue'
 import StatusBar from '../components/StatusBar.vue'
 import RssList from '../components/RssList.vue'
 
-const API_BASE = 'http://localhost:8000/rss'
+// Use relative paths so requests route through nginx proxy to internal backend
+const API_BASE = '/rss'
 
 const newRssLink = ref('')
 const rssList = ref([])

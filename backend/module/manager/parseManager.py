@@ -26,6 +26,8 @@ class parseManager:
     
     def _parse_rss_link(self):
         bangumi_list = self.db_manager.get_all_bangumi()
+        if not bangumi_list:
+            return
         for bangumi in bangumi_list:
             results = self.rss_parser.parse_rss_link(bangumi["link"])
             bangumi_name = self.openai_parser.parseName(results["RSSName"])
@@ -35,6 +37,8 @@ class parseManager:
 
     def _parse_file(self):
         bangumi_list = self.db_manager.get_all_bangumi()
+        if not bangumi_list:
+            return
         for bangumi in bangumi_list:
             unparsed_episodes = self.db_manager.get_unparsed_episodes(bangumi["bangumi_id"])
             for unparsed_episode in unparsed_episodes:
