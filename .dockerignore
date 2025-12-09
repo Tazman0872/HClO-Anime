@@ -1,0 +1,63 @@
+# 忽略所有 .gitignore 中的内容（可选，但推荐显式写）
+# 但 .dockerignore 不支持 include，所以需要显式排除
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Local config
+/config/config.yaml
+/webui/.env*
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Vue build output (built during Docker build, not copied from host)
+/webui/dist/
+/webui/.vite/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Other
+README.md
+# 注意：Dockerfile 和 requirements.txt 等必须保留，不能 ignore
+
+# 注意：不要 ignore Dockerfile, requirements.txt, nginx.conf, backend/, webui/ 等关键构建文件
