@@ -53,10 +53,6 @@
 
 欢迎提供 ISSUE 或者 PR！
 
-## Licence
-
-[MIT licence](https://github.com/EstrellaXD/Auto_Bangumi/blob/main/LICENSE)
-
 [mikan]: https://mikanani.me
 [plex]: https://plex.tv
 [jellyfin]: https://jellyfin.org
